@@ -1,7 +1,3 @@
-# =========================
-# Makefile genérico
-# =========================
-
 # Compilador y opciones
 CC = gcc
 CFLAGS = -Wall -Wextra -O2
