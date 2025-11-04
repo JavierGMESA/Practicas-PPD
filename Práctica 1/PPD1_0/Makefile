@@ -1,6 +1,5 @@
 # =========================================
 # Makefile general para PPD1_x
-# Ubicación: Práctica1/script/Makefile
 # =========================================
 
 # Compilador y opciones
