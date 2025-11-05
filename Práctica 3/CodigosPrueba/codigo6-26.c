@@ -119,20 +119,20 @@ void reinas(void) {
     #pragma omp parallel private(fin, tareaact, i, tomada)
     {
         fin = 0;
-        while (!fin) {
-// acceso en exclusi�n mutua a la bolsa de tareas
-// y a las variables de control
+        while (!fin) 
+        {
+            // acceso en exclusi�n mutua a la bolsa de tareas
+            // y a las variables de control
             #pragma omp critical
             {
                 fin = 0;
                 tomada = 0;
-// tomada indica si se ha tomado una tarea de la bolsa
+                // tomada indica si se ha tomado una tarea de la bolsa
                 if (tareas == 0 && acabados == THREADS)
-                    {
-			fin=1;
-			//escribirtarea(tareaact);//LUPE
-		}
-
+                {
+			            fin=1;
+			            //escribirtarea(tareaact);//LUPE
+		            }
                 else if(tareas != 0) {
                     acabados--;
                     tareas--;
@@ -140,24 +140,28 @@ void reinas(void) {
                     tareaact = extraer(&bolsa);
                 }
             }
-            if (tomada) {
-                for (i = 0; i < N; i++){
-
-                    if (valido(tareaact, i)) {
-                        if (tareaact.fila < (N-1)) {
+            if (tomada) 
+            {
+                for (i = 0; i < N; i++)
+                {
+                    if (valido(tareaact, i)) 
+                    {
+                        if (tareaact.fila < (N-1)) 
+                        {
                             #pragma omp critical
                             {
                                 tareas++;
                                 insertar(&bolsa, ponerreina(tareaact, i));
                             }
-                        } else {
-
+                        } 
+                        else 
+                        {
                             escribirtarea(ponerreina(tareaact, i));
-#pragma omp critical
-                            soluciones++;
+                            #pragma omp critical
+                              soluciones++;
                         }
                     }
-		}//for
+		            }//for
                 #pragma omp critical
                     acabados++;
             }//if (tomada)
