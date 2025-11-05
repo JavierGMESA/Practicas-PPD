@@ -203,7 +203,7 @@ void resolverSudoku() {
         fin = 0;
         while (!fin) 
         {
-            // acceso en exclusi�n mutua a la bolsa de tareas
+            // acceso en exclusión mutua a la bolsa de tareas
             // y a las variables de control
             #pragma omp critical
             {
@@ -220,7 +220,7 @@ void resolverSudoku() {
                     tareas--;
                     tomada = 1;
                     tareaact = extraer(&bolsa);
-                    hayVacia = buscaCeldaVacia(tareaact.s, &tareaact.fila, &tareaact.col);
+                    hayVacia = buscaCeldaVacia(tareaact.s, &tareaact.fila, &tareaact.col);      //Tenemos que hacer que apunte a la siguiente casilla vacía
                 }
             }
             if(tomada) 
@@ -248,7 +248,6 @@ void resolverSudoku() {
             }//if (tomada)
         }
     }
-    //printf("Soluciones: %d\n", soluciones);
 }
 
 int main(int argc, char *argv[]) {
